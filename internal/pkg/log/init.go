@@ -7,7 +7,7 @@ package log
 
 import (
 	chaoslog "github.com/njtc406/chaosutil/log"
-	config "github.com/njtc406/cityOfHope/configs/login_server"
+	"github.com/njtc406/cityOfHope/configs/public"
 )
 
 var (
@@ -17,14 +17,14 @@ var (
 
 func init() {
 	logger, err := chaoslog.NewDefaultLogger(
-		config.SystemConf.GetSystemLoggerFileName(),
-		config.SystemConf.SystemLogger.MaxAge,
-		config.SystemConf.SystemLogger.RotationTime,
-		config.SystemConf.SystemLogger.Level,
-		config.SystemConf.SystemLogger.Caller,
+		public.Conf.GetSystemLoggerFileName(),
+		public.Conf.SystemLogger.MaxAge,
+		public.Conf.SystemLogger.RotationTime,
+		public.Conf.SystemLogger.Level,
+		public.Conf.SystemLogger.Caller,
 		false,
-		config.SystemConf.SystemLogger.Color,
-		config.IsDebug(),
+		public.Conf.SystemLogger.Color,
+		public.IsDebug(),
 	)
 
 	if err != nil {

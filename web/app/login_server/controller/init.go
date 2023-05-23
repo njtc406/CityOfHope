@@ -7,8 +7,7 @@ package controller
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/njtc406/cityOfHope/web/app/login_server/internal/log"
-
+	"github.com/njtc406/cityOfHope/internal/pkg/log"
 	"net/http"
 	"time"
 )

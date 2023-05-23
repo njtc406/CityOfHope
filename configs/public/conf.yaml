@@ -1,0 +1,23 @@
+# 系统状态 debug/release
+SystemStatus: debug
+#SystemStatus: release
+
+# 项目名称
+ProjectName: CHAOS
+
+# 缓存目录
+CachePath: "./run"
+
+# 日志存放目录
+LogPath: "./run/logs"
+
+# 系统日志
+SystemLogger:
+  Name: "SYS"
+  Level: 5
+  Caller: true
+  Color: false
+  MaxAge: 720h
+  RotationTime: 24h
+  ProfilerInterval: 10ms
+
