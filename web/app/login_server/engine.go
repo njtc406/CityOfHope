@@ -11,6 +11,7 @@ import (
 	"github.com/gin-contrib/gzip"
 	"github.com/gin-gonic/gin"
 	config "github.com/njtc406/cityOfHope/configs/login_server"
+	"github.com/njtc406/cityOfHope/configs/public"
 	"github.com/njtc406/cityOfHope/internal/pkg/log"
 	"github.com/njtc406/cityOfHope/internal/pkg/services"
 	"github.com/njtc406/cityOfHope/web/app/login_server/routers"
@@ -36,7 +37,7 @@ func (e *serviceHttp) Init() {
 	gin.DefaultWriter = io.MultiWriter(log.SysLogger.WriterLevel(logrus.InfoLevel))       // 设置默认日志输出为info级别
 	gin.DefaultErrorWriter = io.MultiWriter(log.SysLogger.WriterLevel(logrus.ErrorLevel)) // 设置默认错误日志输出为error级别
 	// 运行模式
-	gin.SetMode(config.SystemConf.SystemStatus)
+	gin.SetMode(public.Conf.SystemStatus)
 	// 默认中间件
 	e.handler.Use(
 		gzip.Gzip(gzip.DefaultCompression),
