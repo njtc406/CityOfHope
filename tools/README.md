@@ -1,9 +1,4 @@
 # `/tools`
 
-Supporting tools for this project. Note that these tools can import code from the `/pkg` and `/internal` directories.
+用于项目的工具，可以使用项目内部的库
 
-Examples:
-
-* https://github.com/istio/istio/tree/master/tools
-* https://github.com/openshift/origin/tree/master/tools
-* https://github.com/dapr/dapr/tree/master/tools

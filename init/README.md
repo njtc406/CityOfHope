@@ -1,3 +1,3 @@
 # `/init`
 
-System init (systemd, upstart, sysv) and process manager/supervisor (runit, supervisord) configs.
+用于各个应用的初始化操作

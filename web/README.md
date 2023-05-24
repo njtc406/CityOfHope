@@ -1,3 +1,3 @@
 # `/web`
 
-Web application specific components: static web assets, server side templates and SPAs.
+用于存放Web服务的代码，包括前端代码和后端代码。web目录通常与api目录结合使用，以便更好地组织项目代码。

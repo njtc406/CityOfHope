@@ -1,8 +1,3 @@
 # `/api`
 
-OpenAPI/Swagger specs, JSON schema files, protocol definition files.
-
-Examples:
-
-* https://github.com/kubernetes/kubernetes/tree/master/api
-* https://github.com/moby/moby/tree/master/api
+用于存放API服务的代码，通常包括HTTP接口、RPC接口等。api目录通常与cmd目录结合使用，以便更好地组织项目代码。

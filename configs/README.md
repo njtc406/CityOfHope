@@ -1,5 +1,3 @@
 # `/configs`
 
-Configuration file templates or default configs.
-
-Put your `confd` or `consul-template` template files here.
+用于存放配置文件，包括环境配置、数据库配置、日志配置等。

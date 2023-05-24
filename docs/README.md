@@ -1,9 +1,3 @@
 # `/docs`
 
-Design and user documents (in addition to your godoc generated documentation).
-
-Examples:
-
-* https://github.com/gohugoio/hugo/tree/master/docs
-* https://github.com/openshift/origin/tree/master/docs
-* https://github.com/dapr/dapr/tree/master/docs
+用于存放项目文档，包括API文档、开发文档、使用手册等。
