@@ -5,6 +5,10 @@
 // 最后更新:  yr  2023/4/22 0022 0:04
 package works
 
-func init() {
+func Run() {
+
+}
+
+func Stop() {
 
 }

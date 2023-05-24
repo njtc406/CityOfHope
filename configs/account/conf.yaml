@@ -1,0 +1,56 @@
+# 系统状态 debug/release
+SystemStatus: debug
+#SystemStatus: release
+
+# 项目名称
+ProjectName: CHAOS
+
+# 缓存目录
+CachePath: "./run"
+
+# 日志存放目录
+LogPath: "./run/logs"
+
+# 性能监控报告间隔(纳秒)如果设置为0表示不开启性能监控
+ProfilerInterval: 1000000000
+
+NodeType: "login"
+NodeID: 1
+ServiceNames:
+  - "RpcAPI"
+
+Sources:
+  LevelDB: "./LDB"
+  Sqlite: "./SDB"
+
+# 系统日志
+SystemLogger:
+  Name: "SYS"
+  Level: 5
+  Caller: true
+  Color: false
+  MaxAge: 720h
+  RotationTime: 24h
+  ProfilerInterval: 10ms
+
+# web配置
+HttpConf:
+  Addr: "127.0.0.1:80"
+  # 外网监听
+  ExternalAddr: "127.0.0.1:80"
+  ReadTimeout: 5s
+  WriteTimeout: 5s
+  CaFileList:
+  Secret: "chaos@njtc406"
+
+
+# rpc配置
+RpcConf:
+  # 客户端连接池初始大小
+  PoolSize: 20
+  # rpc客户端调用rpc服务器服务失败时的操作方式
+  FailMode: 2
+  # 客户端调用服务时,候选服务的选择模式
+  SelectMode: 0
+  # rpc监听地址
+  Addr: "0.0.0.0:81"

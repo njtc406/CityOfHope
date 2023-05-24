@@ -3,6 +3,8 @@
 // 模块功能简介:
 package main
 
-func init() {
-	// TODO 初始化
+import "github.com/njtc406/cityOfHope/internal/pkg/node"
+
+func main() {
+	node.Start()
 }

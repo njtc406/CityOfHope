@@ -15,6 +15,7 @@ import (
 	"github.com/njtc406/cityOfHope/internal/pkg/log"
 	"github.com/njtc406/cityOfHope/internal/pkg/services"
 	"github.com/njtc406/cityOfHope/web/app/login_server/routers"
+	"github.com/njtc406/cityOfHope/web/app/login_server/works"
 	"github.com/sirupsen/logrus"
 	"io"
 	"net/http"
@@ -25,7 +26,7 @@ import (
 
 type serviceHttp struct {
 	wg      *sync.WaitGroup
-	running *atomic.Value
+	running uint32
 	handler *gin.Engine
 	server  *http.Server
 }
@@ -54,7 +55,6 @@ func (e *serviceHttp) Init() {
 		ReadHeaderTimeout: time.Second * 3,
 		IdleTimeout:       time.Second * 3,
 	}
-	e.running.Store(false)
 }
 
 func (e *serviceHttp) logFormatter(p gin.LogFormatterParams) string {
@@ -71,7 +71,7 @@ func (e *serviceHttp) logFormatter(p gin.LogFormatterParams) string {
 }
 
 func (e *serviceHttp) Start() {
-	if !e.running.CompareAndSwap(false, true) {
+	if !atomic.CompareAndSwapUint32(&e.running, 0, 1) {
 		return
 	}
 	e.wg.Add(1)
@@ -80,6 +80,7 @@ func (e *serviceHttp) Start() {
 
 func (e *serviceHttp) run() {
 	defer e.wg.Done()
+	go works.Run()
 	log.SysLogger.Infof("listen %s", e.server.Addr)
 	if err := e.server.ListenAndServe(); err != nil {
 		log.SysLogger.Error(err)
@@ -87,9 +88,12 @@ func (e *serviceHttp) run() {
 }
 
 func (e *serviceHttp) Stop() {
-	defer e.running.Store(false)
+	defer atomic.StoreUint32(&e.running, 0)
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
+
+	works.Stop()
+
 	if err := e.server.Shutdown(ctx); err != nil {
 		log.SysLogger.Warn(err)
 	}
@@ -101,11 +105,10 @@ func NewService() *serviceHttp {
 	return &serviceHttp{
 		handler: gin.New(),
 		server:  nil,
-		running: new(atomic.Value),
 		wg:      new(sync.WaitGroup),
 	}
 }
 
 func init() {
-	services.Register(`service_http`, NewService())
+	services.Register(`login_service`, NewService())
 }
