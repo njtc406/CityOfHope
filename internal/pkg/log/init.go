@@ -32,6 +32,7 @@ func init() {
 	}
 
 	SysLogger = logger.Logger
+	SysLogger.Info(`system logger init ok`)
 }
 
 func Close() {
