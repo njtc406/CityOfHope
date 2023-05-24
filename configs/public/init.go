@@ -44,7 +44,7 @@ func setDefaultConf() {
 }
 
 func parseSystemConfig() {
-	parser.AddConfigPath(`./config/public`)
+	parser.AddConfigPath(`./configs/public`)
 	if err := parser.ReadInConfig(); err != nil {
 		panic(err)
 	}

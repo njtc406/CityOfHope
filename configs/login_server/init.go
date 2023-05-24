@@ -24,7 +24,7 @@ func setDefaultConf() {
 }
 
 func parseSystemConfig() {
-	parser.AddConfigPath(`./config/login_server`)
+	parser.AddConfigPath(`./configs/login_server`)
 	if err := parser.ReadInConfig(); err != nil {
 		panic(err)
 	}
