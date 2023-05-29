@@ -6,12 +6,13 @@
 package log
 
 import (
+	"fmt"
 	chaoslog "github.com/njtc406/chaosutil/log"
 	"github.com/njtc406/cityOfHope/configs/public"
+	"os"
 )
 
 var (
-	logger    *chaoslog.DefaultLogger
 	SysLogger *chaoslog.Logger
 )
 
@@ -31,11 +32,13 @@ func init() {
 		panic(err)
 	}
 
-	SysLogger = logger.Logger
+	SysLogger = logger
 	SysLogger.Info(`system logger init ok`)
 }
 
 func Close() {
 	SysLogger.Info("release log")
-	logger.Close()
+	if err := chaoslog.Release(SysLogger); err != nil {
+		_, _ = fmt.Fprintln(os.Stderr, err)
+	}
 }
